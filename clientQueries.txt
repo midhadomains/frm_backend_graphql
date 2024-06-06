@@ -1,0 +1,119 @@
+-------------------
+
+query getAllUsers{
+    users{
+        _id
+        firstName
+        lastName
+        email
+    }
+  }
+
+  ----------------------
+
+query getAllQuotes{
+    quotes{
+      name
+      by
+    }
+  }
+
+  ---------------------
+
+  query getAllUsers{
+    users{
+        _id
+        firstName
+        lastName
+        email
+        quotes{
+          name
+          by
+        }
+    }
+  }
+
+  ---------------
+  query getUserById{
+    user(_id:"23131"){
+        _id
+        firstName
+        lastName
+        email
+    }
+  }
+
+--------------------
+
+query getQuotesByUser{
+   iquote(by:"23131"){
+    name
+    by
+  }
+}
+
+----------------------
+
+query getQuotesByUser($byUser:ID!){
+   iquote(by:$byUser){
+    name
+    by
+  }
+}
+
+---------------------
+
+  query getUserById($userId:ID!){
+    user(_id:$userId){
+        _id
+        firstName
+        lastName
+        email
+    }
+  }
+
+  --------------
+
+  mutation createUser($userNew:UserInput!){
+  user:signupUser(userNew:$userNew){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+----------------
+
+mutation SigninUser($userSignin:UserSigninInput!){
+  user:signinUser(userSignin:$userSignin){
+    token
+  }
+}
+
+query getAllBlogs {
+    blogs(first: 3 , after:“6646f29de4d1d11d1333033c”, category:“frm-part-2") {
+        edges {
+            cursor
+            node {
+                _id
+                title
+                author
+                meta_data
+                meta_description
+                keywords
+                category
+                sub_category
+                slug
+                open_graph_tags
+                chapters {
+                     title
+                     data
+                }
+            }
+        }
+        pageInfo {
+            hasNextPage
+        }
+    }
+}
